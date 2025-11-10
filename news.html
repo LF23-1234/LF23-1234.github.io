@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="LFH TECHNOLOGY, SRL - Soluciones digitales, desarrollo de software y consultoría TI."
+    />
+    <meta
+      name="keywords"
+      content="LFH, tecnología, software, desarrollo, TI, consultoría"
+    />
+    <meta name="author" content="LFH TECHNOLOGY, SRL" />
+    <link rel="icon" href="img/logo.ico" type="image/svg+xml" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <style>
+      /* 🔹 Animación suave para las tarjetas */
+      .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 1rem;
+        background-color: var(--bs-body-bg);
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 🔹 Botones más suaves en hover */
+      .card .btn-outline-primary {
+        transition: all 0.3s ease;
+      }
+
+      .card .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: #fff;
+        transform: scale(1.05);
+      }
+
+      /* 🔹 Título animado */
+      h1.display-6 {
+        animation: fadeInDown 0.6s ease;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <title>LFH TECHNOLOGY — Noticias</title>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <div class="left">
+          <div>📱 Tienda: <strong>809-542-2034</strong></div>
+          <div>💬 WhatsApp: <strong>809-846-7096</strong></div>
+          <div>✉️ E-mail: <strong>info@lfhtechshop.com</strong></div>
+        </div>
+        <div class="right">
+          <div>
+            <a href="cart.html" class="text-red"
+              ><i class="bi bi-cart3"></i> Carrito
+              <span class="cart-badge" id="cartCount">0</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark nav-glass fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="img/logo.png" alt="LFH logo" class="logo me-2" />
+          <span class="brand">LFH <strong>TECH</strong></span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <form
+            class="header-search d-flex ms-3 me-3"
+            role="search"
+            onsubmit="event.preventDefault(); searchProducts();"
+          >
+            <input
+              id="searchInput"
+              class="form-control"
+              type="search"
+              placeholder="Buscar productos"
+              aria-label="Buscar"
+            />
+            <button class="btn btn-primary btn-search" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="news.html">Noticias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="links.html">Enlaces</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="store.html">LFH TechShop</a>
+            </li>
+          </ul>
+          <div class="ms-3 d-flex align-items-center">
+            <button
+              id="darkToggle"
+              class="btn btn-ghost btn-sm me-2"
+              title="Alternar tema"
+            >
+              <i class="bi bi-moon-stars-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5" style="padding-top: 110px">
+      <div class="text-center mb-5">
+        <h1 class="display-6">Noticias & Artículos</h1>
+        <p class="text-muted">
+          Contenido relacionado con tecnología y la empresa
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">LFH lanza nuevo servicio de DevOps</h5>
+              <p class="card-text">
+                Implementamos pipelines seguros y escalables para despliegues
+                continuos.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Leer más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Mejores prácticas de seguridad 2025</h5>
+              <p class="card-text">
+                Checklist de seguridad para aplicaciones web modernas.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Leer más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Migración a la nube: caso de éxito</h5>
+              <p class="card-text">
+                Cómo reducimos costos y mejoramos disponibilidad.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Leer más</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Automatización de pruebas</h5>
+              <p class="card-text">
+                Aumenta la calidad con pruebas automatizadas.
+              </p>
+              <a href="#" class="btn btn-outline-primary btn-sm">Leer más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <a class="btn btn-secondary" href="index.html"
+          ><i class="bi bi-arrow-left"></i> Volver</a
+        >
+      </div>
+    </main>
+
+    <footer class="py-4 footer">
+      <div class="container d-flex justify-content-between">
+        <div>
+          <strong>LFH TECHNOLOGY, SRL</strong> © <span id="year"></span>
+        </div>
+        <div><a href="index.html">Inicio</a></div>
+      </div>
+    </footer>
+
+    <div
+      id="toastContainer"
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+    ></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

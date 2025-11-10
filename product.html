@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Producto</title>
+    <link rel="icon" href="img/logo.ico" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- topbar injected -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark nav-glass fixed-top"
+      style="top: 38px"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><img src="img/logo.png" style="height: 40px" class="me-2" />LFH
+          TECH</a
+        >
+      </div>
+    </nav>
+    <main class="container" style="padding-top: 140px">
+      <div id="productDetail" class="row g-4"></div>
+    </main>
+    <footer class="py-4 footer">
+      <div class="container d-flex justify-content-between">
+        <div>
+          <strong>LFH TECHNOLOGY, SRL</strong> © <span id="year"></span>
+        </div>
+      </div>
+    </footer>
+    <div
+      id="toastContainer"
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+    ></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      const products = [
+        {
+          id: 1,
+          title: 'Laptop Gamer ZX 15"',
+          price: 1299.99,
+          cat: "laptops",
+          img: "https://picsum.photos/seed/1/800/500",
+          desc: "Laptop poderosa para gaming.",
+        },
+        {
+          id: 2,
+          title: "Mouse Wireless Pro",
+          price: 49.99,
+          cat: "accesorios",
+          img: "https://picsum.photos/seed/2/800/500",
+          desc: "Mouse ergonómico y preciso.",
+        },
+        {
+          id: 3,
+          title: "Cámara IP 1080p",
+          price: 89.99,
+          cat: "camaras",
+          img: "https://picsum.photos/seed/3/800/500",
+          desc: "Cámara para vigilancia con visión nocturna.",
+        },
+        {
+          id: 4,
+          title: "Laptop Ultrabook A7",
+          price: 999.99,
+          cat: "laptops",
+          img: "https://picsum.photos/seed/4/800/500",
+          desc: "Ultrabook ligero y potente.",
+        },
+      ];
+      function getQueryParam(name) {
+        const url = new URL(window.location.href);
+        return url.searchParams.get(name);
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        const id = parseInt(getQueryParam("id") || "1");
+        const p = products.find((x) => x.id === id) || products[0];
+        const container = document.getElementById("productDetail");
+        container.innerHTML = `<div class="col-md-6"><img src="${
+          p.img
+        }" class="img-fluid rounded"></div><div class="col-md-6"><h2>${
+          p.title
+        }</h2><p class="text-muted">$${p.price.toFixed(2)}</p><p>${
+          p.desc
+        }</p><div class="d-flex"><button class="btn btn-primary me-2" onclick="addToCart(${
+          p.id
+        })">Agregar al carrito</button><a href="checkout.html" class="btn btn-outline-light">Comprar ahora</a></div></div>`;
+      });
+      function addToCart(id) {
+        let cart = JSON.parse(localStorage.getItem("lfh_cart") || "[]");
+        cart.push(id);
+        localStorage.setItem("lfh_cart", JSON.stringify(cart));
+        updateCartCount();
+        showToast("Producto agregado al carrito");
+      }
+      function updateCartCount() {
+        const c = document.getElementById("cartCount");
+        if (c)
+          c.textContent = JSON.parse(
+            localStorage.getItem("lfh_cart") || "[]"
+          ).length;
+      }
+      updateCartCount();
+    </script>
+  </body>
+</html>

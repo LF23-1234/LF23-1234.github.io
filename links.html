@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="LFH TECHNOLOGY, SRL - Soluciones digitales, desarrollo de software y consultoría TI."
+    />
+    <meta
+      name="keywords"
+      content="LFH, tecnología, software, desarrollo, TI, consultoría"
+    />
+    <meta name="author" content="LFH TECHNOLOGY, SRL" />
+    <link rel="icon" href="img/logo.ico" type="image/svg+xml" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css" />
+    <title>LFH TECHNOLOGY — Enlaces de Interés</title>
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="container">
+        <div class="left">
+          <div>📱 Tienda: <strong>809-542-2034</strong></div>
+          <div>💬 WhatsApp: <strong>809-846-7096</strong></div>
+          <div>✉️ E-mail: <strong>info@lfhtechshop.com</strong></div>
+        </div>
+          <div>
+            <a href="cart.html" class="text-red"
+              ><i class="bi bi-cart3"></i> Carrito
+              <span class="cart-badge" id="cartCount">0</span></a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark nav-glass fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img src="img/logo.png" alt="LFH logo" class="logo me-2" />
+          <span class="brand">LFH <strong>TECH</strong></span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <form
+            class="header-search d-flex ms-3 me-3"
+            role="search"
+            onsubmit="event.preventDefault(); searchProducts();"
+          >
+            <input
+              id="searchInput"
+              class="form-control"
+              type="search"
+              placeholder="Buscar productos"
+              aria-label="Buscar"
+            />
+            <button class="btn btn-primary btn-search" type="submit">
+              <i class="bi bi-search"></i>
+            </button>
+          </form>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">Noticias</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="links.html">Enlaces</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="store.html">LFH TechShop</a>
+            </li>
+          </ul>
+          <div class="ms-3 d-flex align-items-center">
+            <button
+              id="darkToggle"
+              class="btn btn-ghost btn-sm me-2"
+              title="Alternar tema"
+            >
+              <i class="bi bi-moon-stars-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5" style="padding-top: 110px">
+      <h1>Enlaces de Interés</h1>
+      <p>Videos y mapas embebidos</p>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h3>Video destacado</h3>
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/5GcQtLDGXy8"
+              title="YouTube video"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h3>Ubicación</h3>
+          <div class="ratio ratio-16x9 rounded overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d945.6877444379112!2d-69.93042473048179!3d18.540152070413075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf892568416177%3A0xd2d9fcf7e291fd43!2sLFH%20TECHNOLOGY%2C%20S.R.L!5e0!3m2!1ses!2sdo!4v1762660590960!5m2!1ses!2sdo"
+              width="600"
+              height="450"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-4">
+        <a class="btn btn-secondary" href="index.html">Volver</a>
+      </p>
+    </main>
+
+    <footer class="py-4 footer">
+      <div class="container d-flex justify-content-between">
+        <div>
+          <strong>LFH TECHNOLOGY, SRL</strong> © <span id="year"></span>
+        </div>
+        <div><a href="index.html">Inicio</a></div>
+      </div>
+    </footer>
+
+    <div
+      id="toastContainer"
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+    ></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

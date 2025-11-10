@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LFH TechShop — Tienda</title>
+    <link rel="icon" href="img/logo.ico" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- topbar will be injected -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark nav-glass fixed-top"
+      style="top: 38px"
+    >
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
+          <img
+            src="img/logo.png"
+            alt="LFH logo"
+            class="logo me-2"
+            style="height: 40px"
+          />
+          <span class="brand">LFH <strong>TECH</strong></span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMain"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="store.html">Tienda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="news.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="privacy.html">Privacidad</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container" style="padding-top: 140px">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Tienda</h1>
+        <div>
+          <select id="catFilter" class="form-select">
+            <option value="">Todas las categorías</option>
+            <option value="laptops">Laptops</option>
+            <option value="accesorios">Accesorios</option>
+            <option value="camaras">Cámaras</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="productList" class="row g-3">
+        <!-- Products injected by JS -->
+      </div>
+    </main>
+
+    <footer class="py-4 footer" style="margin-top: 40px">
+      <div class="container d-flex justify-content-between">
+        <div>
+          <strong>LFH TECHNOLOGY, SRL</strong> © <span id="year"></span>
+        </div>
+        <div><a href="index.html">Inicio</a></div>
+      </div>
+    </footer>
+
+    <div
+      id="toastContainer"
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+    ></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+      // sample products
+      const products = [
+        {
+          id: 1,
+          title: 'Laptop Gamer Acer Nitro 5"',
+          price: 1299.99,
+          cat: "laptops",
+          img: "https://a.allegroimg.com/s1024/0c0f36/e3182c1b455ba42bba15380ccc274",
+        },
+        {
+          id: 2,
+          title: "Mouse Logitech G Pro",
+          price: 69.99,
+          cat: "accesorios",
+          img: "https://dpq25p1ucac70.cloudfront.net/seller-place-files/mrkl-files/1864/ELECTROHOGAR/G-PRO-WIRELESS-1-PORTADA_200219341224_44.png",
+        },
+        {
+          id: 3,
+          title: "Cámara IP Full HD 1080p",
+          price: 99.99,
+          cat: "camaras",
+          img: "https://concordsecurity.com.pa/wp-content/uploads/2022/09/2641X1204_Tipos-de-Camaras-scaled.jpg",
+        },
+        {
+          id: 4,
+          title: "Punto de Venta Completo",
+          price: 999.99,
+          cat: "laptops",
+          img: "https://tse4.mm.bing.net/th/id/OIP.zpwsm2nlPFJlWYE7HES-dAHaHa?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+        },
+      ];
+      function renderProducts(filter = "") {
+        const container = document.getElementById("productList");
+        container.innerHTML = "";
+        products
+          .filter((p) => !filter || p.cat === filter)
+          .forEach((p) => {
+            const col = document.createElement("div");
+            col.className = "col-md-3";
+            col.innerHTML = `<div class="card h-100"><img src="${
+              p.img
+            }" class="card-img-top" alt=""><div class="card-body"><h5>${
+              p.title
+            }</h5><p class="text-muted">$${p.price.toFixed(
+              2
+            )}</p><div class="d-flex justify-content-between"><a href="product.html?id=${
+              p.id
+            }" class="btn btn-outline-primary">Ver</a><button class="btn btn-primary" onclick="addToCart(${
+              p.id
+            })">Agregar</button></div></div></div>`;
+            container.appendChild(col);
+          });
+      }
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts();
+        document
+          .getElementById("catFilter")
+          .addEventListener("change", (e) => renderProducts(e.target.value));
+      });
+      function addToCart(id) {
+        let cart = JSON.parse(localStorage.getItem("lfh_cart") || "[]");
+        cart.push(id);
+        localStorage.setItem("lfh_cart", JSON.stringify(cart));
+        updateCartCount();
+        showToast("Producto agregado al carrito");
+      }
+      function updateCartCount() {
+        const c = document.getElementById("cartCount");
+        let cart = JSON.parse(localStorage.getItem("lfh_cart") || "[]");
+        if (c) c.textContent = cart.length;
+      }
+      updateCartCount();
+      function searchProducts() {
+        const q = document.getElementById("searchInput").value.toLowerCase();
+        const f = products.filter((p) => p.title.toLowerCase().includes(q));
+        const container = document.getElementById("productList");
+        container.innerHTML = "";
+        f.forEach((p) => {
+          const col = document.createElement("div");
+          col.className = "col-md-3";
+          col.innerHTML = `<div class="card h-100"><img src="${
+            p.img
+          }" class="card-img-top" alt=""><div class="card-body"><h5>${
+            p.title
+          }</h5><p class="text-muted">$${p.price.toFixed(
+            2
+          )}</p><div class="d-flex justify-content-between"><a href="product.html?id=${
+            p.id
+          }" class="btn btn-outline-primary">Ver</a><button class="btn btn-primary" onclick="addToCart(${
+            p.id
+          })">Agregar</button></div></div></div>`;
+          container.appendChild(col);
+        });
+      }
+    </script>
+  </body>
+</html>
